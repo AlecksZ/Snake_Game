@@ -1,0 +1,43 @@
+from turtle import Screen
+import time
+
+from food import Food
+from snake import Snake
+from scoreboard import Scoreboard
+
+screen = Screen()
+screen.setup(width=600, height=600)
+screen.bgcolor("black")
+screen.title("スネークゲーム")
+screen.tracer(0)
+
+snake = Snake()
+food = Food()
+score = Scoreboard()
+
+game_is_on = True
+while game_is_on:
+    screen.update()
+    time.sleep(0.1)
+    snake.move()
+
+
+    # Detect collision with food
+    if snake.head.distance(food) < 15:
+        food.refresh()
+        snake.extend()
+        score.update_score()
+
+    # Detect collision with wall
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+        score.reset_game()
+        snake.reset_snake()
+
+    # Detect collision with tale
+    for segment in snake.squares[1:]:
+        if snake.head.distance(segment) < 10:
+            score.reset_game()
+            snake.reset_snake()
+
+
+screen.exitonclick()
