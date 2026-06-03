@@ -1,4 +1,4 @@
-My project for learning object orientated programming
+My project for learning object orientated programming using Python Turtle
 
 Snake Class - with functions that creates the snake in different colors and spawns it on the screen, logic for controlling it, adds a segment when collision with "Food" class is detected, resets when collision is detected with itself or the border of screen
 
